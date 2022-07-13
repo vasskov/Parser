@@ -1,3 +1,6 @@
 requirements.txt
 /venv
 /__pycache__
+/Book
+/Recipe-Book.pdf
+/Result
