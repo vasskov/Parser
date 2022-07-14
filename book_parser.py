@@ -21,8 +21,8 @@ def load_book():
         filename = tk.filedialog.askopenfilename()
         if'.pdf' in filename: break
     root.destroy()
-    #return filename
-    return "Recipe-Book.pdf"
+    return filename
+    #return "Recipe-Book.pdf"
     
 def main():
     book_name = load_book()
