@@ -1,12 +1,12 @@
 from py_pdf_parser.filtering import ElementList
 from py_pdf_parser.visualise import visualise
-from BookConfigaration import BookConfig
+from BookConfigaration import Book_Config
 
 class Filtering():
     def __init__(self, pdf_elememts, book_config):
         self.book_config = book_config
         self.pdf_elements = pdf_elememts
-        self.title_fonts = self.find_title(self.book_config.title)
+        self.title_fonts = self.find_title(self.book_config.title.font)
         self.Result_Recipes_List = self.get_recipe_list(self.pdf_elements)
 
     def find_title(self, Filt_by:list):
@@ -20,7 +20,7 @@ class Filtering():
 
     def filter_ignored_fonts(self, List):
         for i in List:
-            if i.font in self.book_config.ignore:
+            if i.font in self.book_config.ignore.font:
                 List = List.remove_element(i)
         return List
 

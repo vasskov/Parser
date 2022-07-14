@@ -3,7 +3,8 @@ from py_pdf_parser.visualise import visualise
 
 #my scripts imports
 from filtering import Filtering
-from BookConfigaration import BookConfig
+#from BookConfigaration import BookConfig
+from Book_Handler import Book_Config_Handler
 from make_recipe_ import MakeRecipe
 
 import tkinter as tk
@@ -21,8 +22,8 @@ def load_book():
         filename = tk.filedialog.askopenfilename()
         if'.pdf' in filename: break
     root.destroy()
-    return filename
-    #return "Recipe-Book.pdf"
+    #return filename
+    return "Recipe-Book.pdf"
     
 def main():
     book_name = load_book()
@@ -31,7 +32,8 @@ def main():
     pdf_elements = document.elements
 
     #Add validation filtering gui
-    Book_Configuration = BookConfig(document)
+    book_handler = Book_Config_Handler(document)
+    Book_Configuration = book_handler.book_config
 
 
     filtering_class = Filtering(pdf_elements, Book_Configuration)

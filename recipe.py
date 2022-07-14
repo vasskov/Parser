@@ -1,7 +1,7 @@
 import json
 import time
 from hashlib import md5
-from BookConfigaration import BookConfig
+from BookConfigaration import Book_Config
 
 class Recipe():
     def __init__(self,book_config,  book, item):
