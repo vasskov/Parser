@@ -1,4 +1,5 @@
 from recipe import Recipe
+from recipe_handler import Recipe_Handler
 import json
 import os
 
@@ -19,7 +20,8 @@ class MakeRecipe():
 
     def make_recipe(self, List):
         for items in List:
-            recipe = Recipe(self.book_config,self.book_name, items)
+            recipe_create = Recipe_Handler(self.book_config,self.book_name, items)
+            recipe = recipe_create.get_recipe()
             self.Recipe_List.append(recipe)
         return self.Recipe_List
 
