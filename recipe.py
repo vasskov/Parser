@@ -4,44 +4,58 @@ from hashlib import md5
 from BookConfigaration import Book_Config
 
 class Recipe():
-    def __init__(self,book_config,  book, item):
+    def __init__(self,book_config,  book_name, pdf_item_list):
+
         self.version = 0.1
-        self.source = book
+        self.book_config = book_config
+        self.source = book_name
+        self.pdf_item_list = pdf_item_list
         named_tuple = time.localtime()
         self.creation_time = time_string = time.strftime("%d/%m/%Y, %H:%M:%S", named_tuple)
-        self.manege_recipe_text(item)
+        self.manege_recipe_text(pdf_item_list)
         self.recipe_hash = self.hashing()
+        print(self.note)
         
     def manege_recipe_text(self, list):
-        self.title = self.set_title(list)
-        self.recipe_text = self.set_recipe_text(list)
-        self.note = self.set_note(list)
-        self.steps = self.set_steps(list)
-        self.ingredients = self.set_ingredients(list)
-        self.tags = self.set_tags(list)
+        self.title = self.__set_title(list)
+        self.recipe_text = self.__set_recipe_text(list)
+        self.note = []
+        self.__set_note(list)
+        self.steps = self.__set_steps(list)
+        self.ingredients = self.__set_ingredients(list)
+        self.tags = self.__set_tags(list)
 
-    def toText(self, item):
+    def __pdfelements__to__text(self, item):
         st = ""
         for i in item:
             st += i.text()
         return st
 
-    def set_title(self, list):
+    def __set_title(self, list):
         return list[0].text()
 
-    def set_recipe_text(self,list):
-        return self.toText(list[1::])
+    def __set_recipe_text(self,list):
+        return self.__pdfelements__to__text(list[1::])
 
-    def set_note(self,list):
+    def __set_note(self,list):
+        if not self.book_config.note.font:
+            return
+        for element in self.pdf_item_list:
+            print(element.font)
+            print(self.book_config.note.font)
+            if element.font in self.book_config.note.font:
+                print(True)
+                self.note.append(element.text())
+                self.pdf_item_list.remove_element(element)
         return ['note place holder']
 
-    def set_steps(self, list):
+    def __set_steps(self, list):
         return ['steps place holder']
 
-    def set_ingredients(self, list):
+    def __set_ingredients(self, list):
         return ['ingredients place holder']
 
-    def set_tags(self, list):
+    def __set_tags(self, list):
         return ['tags place holder']
 
     def hashing(self):
@@ -58,7 +72,8 @@ class Recipe():
         return text
 
     def toJSON(self, human_read=True):
-        return json.dumps(self, default=lambda o: o.__dict__, indent=4 if human_read else None)
+        return json.dumps({"try":"recipe"})
+        #return json.dumps(self, default=lambda o: o.__dict__, indent=4 if human_read else None)
 
 if __name__ == '__main__':
     pass
