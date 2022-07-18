@@ -1,22 +1,9 @@
 from py_pdf_parser.visualise.main import PDFVisualiser
 from py_pdf_parser.loaders import load_file
 from py_pdf_parser.components import PDFDocument
-from typing import Optional
 import tkinter as tk
-
-#bug import
-#from matplotlib.figure import Figure
-#from matplotlib.backends.backend_tkagg import FigureCanvasTkAgg
-#from enum import IntEnum
-from typing import Dict, Optional #,List
-
-#confirmation
+from typing import Dict, Optional
 from py_pdf_parser.visualise.background import get_pdf_background
-from py_pdf_parser.visualise.main import _ElementRectangle
-from py_pdf_parser.visualise.main import CustomToolbar
-from py_pdf_parser.filtering import ElementList
-
-#refactoring
 from custom_visualiser_confirmatiom import Custom_Visualiser_Confirmation
 from custom_visualiser_config_window import Custom_Visualiser_Config_Window, MouseButton
 
