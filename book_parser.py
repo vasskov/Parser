@@ -12,8 +12,8 @@ import tkinter as tk
 
 def load_book():
     #load book place holder
-    root = tk.Tk()
-    root.geometry('550x250')
+    #root = tk.Tk()
+    #root.geometry('550x250')
     filetypes = (
         ('text files', '*.pdf'),
         ('All files', '*.*')
@@ -24,7 +24,7 @@ def load_book():
     #root.destroy()
     
     #return filename
-    return "Recipe-Book.pdf"
+    return "gerecipes.pdf"
     
 def main():
     book_name = load_book()

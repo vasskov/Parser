@@ -42,8 +42,8 @@ class MakeRecipe():
                 all_json = all_json + json_line + recipe.toJSON()
             else:
                 all_json = all_json + "\n" + recipe.toJSON()
-            
-            self.write2file(cur_path + "/JSON/" + recipe.title + ".json", recipe.toJSON())
+            title = recipe.title if len(recipe.title) < 20 else recipe.title[:20]
+            self.write2file(cur_path + "/JSON/" + title + ".json", recipe.toJSON())
         all_json += "]"
         self.write2file(cur_path + "/" + recipe.source + ".json", all_json)
 
@@ -57,7 +57,8 @@ class MakeRecipe():
         all_text = ""
         for recipe in self.Recipe_List:
             all_text = all_text + text_line + str(recipe)
-            self.write2file(cur_path + "/TXT/" + recipe.title + ".txt", str(recipe))
+            title = recipe.title if len(recipe.title) < 20 else recipe.title[:20]
+            self.write2file(cur_path + "/TXT/" + title + ".txt", str(recipe))
         self.write2file(cur_path + "/"+ recipe.source + ".txt", all_text)
 
     def make_result(self):

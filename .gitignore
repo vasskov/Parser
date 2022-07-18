@@ -3,5 +3,5 @@ to do.txt
 /venv
 /__pycache__
 /Book
-/Recipe-Book.pdf
 /Result
+*.pdf

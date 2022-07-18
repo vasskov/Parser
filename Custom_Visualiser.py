@@ -106,10 +106,6 @@ class CustomVisualiser(PDFVisualiser):
             for key in keys:
                 if elem_font not in prepared_dict[key]:
                     elements_category[key] = elements_category[key].remove_element(element)
-        print(f'000---->>>{type(elements_category["title"])}')
-        print(_elements.__len__())
-        print(elements_category['title'].__len__())
-        print(elements_category['ignored'].__len__())
         return elements_category
 
 
