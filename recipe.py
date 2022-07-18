@@ -1,7 +1,7 @@
 import json
 import time
 from hashlib import md5
-from BookConfigaration import Book_Config
+from book_config import Book_Config
 from dataclasses import dataclass
 
 @dataclass
@@ -33,10 +33,10 @@ class Recipe():
         return md5(text.encode()).hexdigest()
 
     def toJSON(self, human_read=True):
-        #return json.dumps({"try":"recipe"})
-        return json.dumps(self, default=lambda o: o.__dict__, indent=4 if human_read else None)
-        #return json.dumps(self, default=lambda o: o.__dict__)
-        #return json.dumps(self.__str__())
+        return json.dumps(
+            self, 
+            default=lambda o: o.__dict__, indent=4 if human_read else None
+            )
 
 if __name__ == '__main__':
     pass

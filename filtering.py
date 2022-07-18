@@ -1,6 +1,6 @@
 from py_pdf_parser.filtering import ElementList
 from py_pdf_parser.visualise import visualise
-from BookConfigaration import Book_Config
+from book_config import Book_Config
 
 class Filtering():
     def __init__(self, pdf_elememts, book_config):

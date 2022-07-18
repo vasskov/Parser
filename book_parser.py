@@ -40,13 +40,13 @@ def load_book():
     #root.destroy()
     
     #return filename
-    return "Recipe-Book.pdf"
+    return "gerecipes.pdf"
     
 def main():
     sys.excepthook = handle_exception
     book_name = load_book()
     print('loading....')
-    document = loaders.load_file("Book/" + book_name)
+    document = loaders.load_file('Book/'+book_name)
     pdf_elements = document.elements
 
     #Add validation filtering gui
@@ -59,8 +59,7 @@ def main():
     
     make_recipe = MakeRecipe(book_name, Book_Configuration, filtered_book_list)
 
-
-    print('_1_2_')
+    print('end')
 
 def ignore_try():
         i = 0
@@ -71,5 +70,3 @@ def ignore_try():
 
 if __name__ == '__main__':
     main()
-
-#visualise(document,page_number=3, show_info=True, elements=pdf_elem)

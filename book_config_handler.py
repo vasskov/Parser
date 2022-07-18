@@ -3,7 +3,7 @@ from threading import Thread
 from custom_visualiser import Custom_Visualiser
 from py_pdf_parser.components import PDFDocument
 from typing import Dict, Optional, List
-from BookConfigaration import Book_Config
+from book_config import Book_Config
 
 class Book_Config_Handler():
     def __init__(self,document, book_name,gui=True):
