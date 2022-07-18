@@ -1,9 +1,4 @@
 import json
-#from Custom_Visualiser import CustomVisualiser#,custom_visualise, close_window, custom_class
-
-#from py_pdf_parser.components import PDFDocument
-#from typing import Dict, Optional, List
-
 from dataclasses import dataclass
 '''
 - seve config to json
