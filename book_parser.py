@@ -1,14 +1,30 @@
 from py_pdf_parser import loaders
-from py_pdf_parser.visualise import visualise
+#from py_pdf_parser.visualise import visualise
 
 #my scripts imports
 from filtering import Filtering
-#from BookConfigaration import BookConfig
 from Book_Handler import Book_Config_Handler
 from make_recipe_ import MakeRecipe
 
 import tkinter as tk
 #from tkinter import filedialog as fd
+
+#logging
+import sys
+import logging
+logger = logging.getLogger(__name__)
+handler = logging.StreamHandler(stream=sys.stdout)
+logging.basicConfig(filename="error.log", level=logging.ERROR)
+logger.addHandler(handler)
+
+def handle_exception(exc_type, exc_value, exc_traceback):
+    if issubclass(exc_type, KeyboardInterrupt):
+        sys.__excepthook__(exc_type, exc_value, exc_traceback)
+        return
+
+    logger.error("Uncaught exception", exc_info=(exc_type, exc_value, exc_traceback))
+
+
 
 def load_book():
     #load book place holder
@@ -27,6 +43,7 @@ def load_book():
     return "gerecipes.pdf"
     
 def main():
+    sys.excepthook = handle_exception
     book_name = load_book()
     print('loading....')
     document = loaders.load_file(book_name)
@@ -39,7 +56,7 @@ def main():
 
     filtering_class = Filtering(pdf_elements, Book_Configuration)
     filtered_book_list = filtering_class.Result_Recipes_List
-
+    
     make_recipe = MakeRecipe(book_name, Book_Configuration, filtered_book_list)
 
 
