@@ -1,6 +1,6 @@
 from py_pdf_parser.visualise import visualise
 from threading import Thread
-from Custom_Visualiser import CustomVisualiser
+from custom_visualiser import Custom_Visualiser
 from py_pdf_parser.components import PDFDocument
 from typing import Dict, Optional, List
 from BookConfigaration import Book_Config
@@ -70,7 +70,7 @@ class Book_Config_Handler():
         document: PDFDocument,
         **kwargs 
     ):
-        self.custom_class = CustomVisualiser(document = document,**kwargs)# config_window=config_window)
+        self.custom_class = Custom_Visualiser(document = document,**kwargs)
         self.custom_class.root.mainloop()
 
     def make_config_cli(self):

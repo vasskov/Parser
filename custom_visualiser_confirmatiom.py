@@ -7,7 +7,7 @@ class Custom_Visualiser_Confirmation:
         self.element_category = self.__element_category(prepared_res)
         #prepared_res = self.divide_fonts(self.confirmation)
         #self.element_category = self.__element_category(prepared_res)
-        self._CustomVisualiser__plot_current_page()
+        self._Custom_Visualiser__plot_current_page()
         self.toolbar.destroy()
         self.custom_toolbar = CustomToolbar(
                 self.canvas,
@@ -64,5 +64,5 @@ class Custom_Visualiser_Confirmation:
     def __set_page(self, page_number: int):
         if self.current_page != page_number:
             self.current_page = page_number
-            self._CustomVisualiser__plot_current_page()
-            self._CustomVisualiser__fig.canvas.draw()
+            self._Custom_Visualiser__plot_current_page()
+            self._Custom_Visualiser__fig.canvas.draw()

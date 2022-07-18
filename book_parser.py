@@ -3,7 +3,7 @@ from py_pdf_parser import loaders
 
 #my scripts imports
 from filtering import Filtering
-from Book_Handler import Book_Config_Handler
+from book_config_handler import Book_Config_Handler
 from make_recipe_ import MakeRecipe
 
 import tkinter as tk

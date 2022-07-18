@@ -18,6 +18,7 @@ from py_pdf_parser.filtering import ElementList
 
 #refactoring
 from custom_visualiser_confirmatiom import Custom_Visualiser_Confirmation
+from custom_visualiser_config_window import Custom_Visualiser_Config_Window
 
 STYLES_Confirm = {
     "title": {"color": "#38cc25", "linewidth": 1, "alpha": 0.7},
@@ -34,7 +35,7 @@ class MouseButton(IntEnum):
     BACK = 8
     FORWARD = 9
 
-class CustomVisualiser(PDFVisualiser, Custom_Visualiser_Confirmation):
+class Custom_Visualiser(PDFVisualiser, Custom_Visualiser_Confirmation):
     __clicked_elements: Dict[MouseButton, "PDFElement"] = {}
     __info_text: Optional["Text"] = None
 
