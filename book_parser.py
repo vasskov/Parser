@@ -40,13 +40,13 @@ def load_book():
     #root.destroy()
     
     #return filename
-    return "gerecipes.pdf"
+    return "Recipe-Book.pdf"
     
 def main():
     sys.excepthook = handle_exception
     book_name = load_book()
     print('loading....')
-    document = loaders.load_file(book_name)
+    document = loaders.load_file("Book/" + book_name)
     pdf_elements = document.elements
 
     #Add validation filtering gui
