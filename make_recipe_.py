@@ -25,13 +25,6 @@ class MakeRecipe():
             self.Recipe_List.append(recipe)
         return self.Recipe_List
 
-    #def toText(self, item):
-    #    #from pdf_elem to text
-    #    st = ""
-    #    for i in item:
-    #        st += i.text()
-    #    return st
-
     def write2file(self, path, info:str):
         with open(path, "w") as f:
             f.write(info)

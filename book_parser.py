@@ -18,10 +18,11 @@ def load_book():
         ('text files', '*.pdf'),
         ('All files', '*.*')
     )
-    while True:
-        filename = tk.filedialog.askopenfilename()
-        if'.pdf' in filename: break
-    root.destroy()
+    #while True:
+    #    filename = tk.filedialog.askopenfilename()
+    #    if'.pdf' in filename: break
+    #root.destroy()
+    
     #return filename
     return "Recipe-Book.pdf"
     
@@ -32,7 +33,7 @@ def main():
     pdf_elements = document.elements
 
     #Add validation filtering gui
-    book_handler = Book_Config_Handler(document)
+    book_handler = Book_Config_Handler(document,book_name)
     Book_Configuration = book_handler.book_config
 
 

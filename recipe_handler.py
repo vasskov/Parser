@@ -8,47 +8,37 @@ class Recipe_Handler:
         self.manege_recipe_text(self.__pdf_item_list)
 
     def manege_recipe_text(self, list):
-        title = self.__set_title(list)
-        recipe_text = self.__set_recipe_text(list)
-        note = self.__set_note(list)
-        steps = self.__set_steps(list)
-        ingredients = self.__set_ingredients(list)
-        tags = self.__set_tags(list)
+        title = self.__set_title()
+        
+        note = self.__set_item(self.book_config.note)
+        
+        ingredients = self.__set_item(self.book_config.ingredient)
+        steps = self.__set_item(self.book_config.steps)
+
+        tags = self.__set_tags()
+        recipe_text = self.__set_recipe_text()
+
         self.recipe = Recipe(self.book_name,title,recipe_text,note,steps,ingredients,tags)
 
     def get_recipe(self):
         return self.recipe
 
-    def __pdfelements__to__text(self, item):
-        st = ""
-        for i in item:
-            st += i.text()
-        return st
+    def __set_title(self):
+        title_list = self.__set_item(self.book_config.title)
+        return title_list[0]
 
-    def __set_title(self, list):
-        return list[0].text()
+    def __set_recipe_text(self):
+        return list(map(lambda item: item.text(), self.__pdf_item_list))
 
-    def __set_recipe_text(self,list):
-        return self.__pdfelements__to__text(list[1::])
-
-    def __set_note(self,list):
-        return ["note"]
-        if not self.book_config.note.font:
-            return
+    def __set_item(self, item):
+        text_list = []
+        if not item.font:
+            return []
         for element in self.__pdf_item_list:
-            print(element.font)
-            print(self.book_config.note.font)
-            if element.font in self.book_config.note.font:
-                print(True)
-                note.append(element.text())
-                self.__pdf_item_list.remove_element(element)
-        return note
+            if element.font in item.font:
+                text_list.append(element.text())
+                self.__pdf_item_list = self.__pdf_item_list.remove_element(element)
+        return text_list
 
-    def __set_steps(self, list):
-        return ['steps place holder']
-
-    def __set_ingredients(self, list):
-        return ['ingredients place holder']
-
-    def __set_tags(self, list):
+    def __set_tags(self):
         return ['tags place holder']

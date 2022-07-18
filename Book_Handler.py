@@ -6,12 +6,13 @@ from typing import Dict, Optional, List
 from BookConfigaration import Book_Config
 
 class Book_Config_Handler():
-    def __init__(self,document,gui=True):
+    def __init__(self,document, book_name,gui=True):
         self.document = document
         self.pdf_elements = self.document.elements
         self.fonts = self.document.fonts
         self.fonts = list(self.fonts)
         self.fonts.sort()
+        self.book_name = book_name
         self.book_config = Book_Config()
         if gui:
             self.run_config_gui()
@@ -27,12 +28,19 @@ class Book_Config_Handler():
         self.book_config.note.font = self.__get_config_from_dict(self.__get_font, 'note')
         self.book_config.steps.font = self.__get_config_from_dict(self.__get_font, 'step')
         self.book_config.ingredient.font = self.__get_config_from_dict(self.__get_font, 'ingredients')
-        
+        self.book_config.book_name = self.book_name
+
+        self.__delete_duplicates_font_ids(self.book_config.ingredient, self.book_config.steps)
+        self.__delete_duplicates_font_ids(self.book_config.note, self.book_config.ingredient)
+        self.__delete_duplicates_font_ids(self.book_config.note, self.book_config.steps)
+
         self.validation_config(self.custom_class.Result)
         #self.validation_config(self.gui_Result)
+        
+        #self.create_json_file()
 
     def __get_config_from_dict(self,function,key):
-        return list(map(function, self.custom_class.Result[key]))
+        return list(set(map(function, self.custom_class.Result[key])))
 
     def __result_config_procesed(self, dict_config):
         processed_res_dict = {}
@@ -76,17 +84,9 @@ class Book_Config_Handler():
     def close_window(self):
         self.custom_class.root.destroy()
 
-    def conflict_less():
-        
-        pass
-    def common_member(a, b):
-        result = []
-        for x in list1:
-            for y in list2:
-                if x == y:
-                    result.append(x)
-        if result.__len__() == 0: return None
-        else: return result
+    def __delete_duplicates_font_ids(self, list_1, list_2):
+        list_1.font, list_2.font = list(set(list_1.font) - set(list_2.font)),list(set(list_2.font) - set(list_1.font))
+
 
     def make_item_cli(self,text):
         print('\n',text)
@@ -107,3 +107,9 @@ class Book_Config_Handler():
                 selected.append(font)
         return selected
 
+    def create_json_file(self):
+        json = self.book_config.toJSON()
+        print(json)
+        path = "Result/" + self.book_config.book_name
+        with open(path, "w") as f:
+            f.write(json)
