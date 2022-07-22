@@ -25,48 +25,61 @@ def handle_exception(exc_type, exc_value, exc_traceback):
     logger.error("Uncaught exception", exc_info=(exc_type, exc_value, exc_traceback))
 
 
+root = tk.Tk()
+root.title('Application')
+root.geometry('550x250')
+
 
 def load_book():
-    #load book place holder
-    #root = tk.Tk()
-    #root.geometry('550x250')
     filetypes = (
         ('text files', '*.pdf'),
         ('All files', '*.*')
     )
-    #while True:
-    #    filename = tk.filedialog.askopenfilename()
-    #    if'.pdf' in filename: break
-    #root.destroy()
-    
-    #return filename
-    return "gerecipes.pdf"
+    filename = tk.filedialog.askopenfilename(
+        title='Open a file',
+        initialdir='/Books',
+        filetypes=filetypes
+    )
+    print(filename)
+
+    book_name = filename.split("/")[-1]
+    print(book_name)
+    return book_name
     
 def main():
     sys.excepthook = handle_exception
-    book_name = load_book()
+    tk_main_window()
+    root.mainloop()
+    print('end')
+
+def procces_book(book_name):
     print('loading....')
     document = loaders.load_file('Book/'+book_name)
     pdf_elements = document.elements
 
-    #Add validation filtering gui
     book_handler = Book_Config_Handler(document,book_name)
     Book_Configuration = book_handler.book_config
-
 
     filtering_class = Filtering(pdf_elements, Book_Configuration)
     filtered_book_list = filtering_class.Result_Recipes_List
     
     make_recipe = MakeRecipe(book_name, Book_Configuration, filtered_book_list)
 
-    print('end')
+def book_manage():
+    print("book_managing")
+    book_name = load_book()
+    root.destroy()
+    procces_book(book_name)
 
-def ignore_try():
-        i = 0
-        for item in pdf_elem:
-            if i % 2 == 0:
-                item.ignore()
-            i += 1
+def update_app():
+    print("Updating")
+
+def tk_main_window():
+    select_file_button = tk.Button(root, text="Select Book", command=book_manage)
+    update_app_button = tk.Button(root, text="Update program", command=update_app)
+
+    select_file_button.pack()
+    update_app_button.pack()
 
 if __name__ == '__main__':
     main()
