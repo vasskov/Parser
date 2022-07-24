@@ -37,7 +37,7 @@ class Book_Config_Handler():
         self.validation_config(self.custom_class.Result)
         #self.validation_config(self.gui_Result)
         
-        #self.create_json_file()
+        self.create_json_file()
 
     def __get_config_from_dict(self,function,key):
         return list(set(map(function, self.custom_class.Result[key])))
@@ -110,6 +110,6 @@ class Book_Config_Handler():
     def create_json_file(self):
         json = self.book_config.toJSON()
         print(json)
-        path = "Result/" + self.book_config.book_name
+        path = f"Result/{self.book_config.book_name}/{self.book_config.book_name}.config.json"
         with open(path, "w") as f:
             f.write(json)

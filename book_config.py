@@ -23,7 +23,7 @@ class Book_Config():
         self.tags = PDF_Item_ids()
 
     def toJSON(self):
-        return json.dumps(self, indent = 4)
+        return json.dumps(self, default=lambda o: o.__dict__, indent = 4)
     
     def get_key(self):
         return vars(self).keys()
