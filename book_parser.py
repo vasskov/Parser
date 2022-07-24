@@ -1,5 +1,4 @@
 from py_pdf_parser import loaders
-#from py_pdf_parser.visualise import visualise
 
 #my scripts imports
 from filtering import Filtering
@@ -7,7 +6,6 @@ from book_config_handler import Book_Config_Handler
 from make_recipe_ import MakeRecipe
 
 import tkinter as tk
-#from tkinter import filedialog as fd
 
 #logging
 import sys
