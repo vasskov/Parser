@@ -70,6 +70,7 @@ def book_manage():
     procces_book(book_name)
 
 def update_app():
+    os.system("pip install --upgrade git+https://github.com/vasskov/Parser") 
     print("Updating")
 
 def tk_main_window():
